@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\store\ProductCategorySearch */
+/* @var $searchModel common\models\store\ProductDescriptionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Product Categories';
+$this->title = 'Product Descriptions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-category-index">
+<div class="product-description-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?php echo Html::a('Create Product Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php echo Html::a('Create Product Description', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php echo GridView::widget([
@@ -26,19 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'slug',
+            'category_id',
+            'description:ntext',
             'status',
             'created_at:datetime',
-            'updated_at:date',
-             'created_by',
-            [
-                'attribute' => 'created_by',
-                'format' => 'raw',
-                'value' => function ($model){
-                    return isset($model->created) ? $model->created->username : '';
-                },
-            ],
-             'updated_by',
+             'updated_at:datetime',
+            // 'created_by',
+            // 'updated_by',
+            // 'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

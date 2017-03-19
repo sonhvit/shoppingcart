@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\store\ProductCategory */
+/* @var $model common\models\store\ProductDescription */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="product-category-form">
+<div class="product-description-form">
 
     <?php $form = ActiveForm::begin([
     'layout' => 'horizontal',
@@ -18,9 +18,15 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?php echo $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'category_id')->textInput() ?>
 
-    <?php echo $form->field($model, 'status')->checkbox() ?>
+    <?php echo $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?php echo $form->field($model, 'status')->textInput() ?>
+
+    <?php echo $form->field($model, 'created_at')->textInput() ?>
+
+    <?php echo $form->field($model, 'updated_at')->textInput() ?>
 
     <?php echo $form->field($model, 'created_by')->textInput() ?>
 

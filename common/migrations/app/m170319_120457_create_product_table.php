@@ -3,19 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `category`.
+ * Handles the creation of table `product`.
  */
-class m170319_110159_create_category_table extends Migration
+class m170319_120457_create_product_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('product_category', [
+        $this->createTable('product_description', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(255),
-            'slug' => $this->string(255),
+            'name' => $this->string(255)->notNull(),
+            'description' => $this->text(),
+            'category_id' => $this->integer() -> notNull(),
             'status' => $this->smallInteger()->defaultValue(1),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
@@ -29,6 +30,6 @@ class m170319_110159_create_category_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('category');
+        $this->dropTable('product');
     }
 }
