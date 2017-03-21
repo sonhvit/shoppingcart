@@ -26,11 +26,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'category_id',
+            [
+                'attribute' => 'category_id',
+                'format' => 'raw',
+                'value' => function ($model){
+                    return isset($model->categoryid) ? $model->categoryid->name : '';
+                },
+            ],
             'description:ntext',
-            'status',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'filter' => [1 =>  Yii::t('backend', 'Published'), 0 => Yii::t('backend', 'Not Published')],
+                'value'=>function ($model) {
+                    $options = [
+                        'class' => ($model->status ==1)? 'glyphicon glyphicon-ok text-success' :'glyphicon glyphicon-remove text-danger',
+                    ];
+                    return Html::tag('p',Html::tag('span','',$options),['class'=>'text-center']);
+                },
+                'contentOptions' => ['style' => 'width:10%;text-align:center'],
+            ],
             'created_at:datetime',
-             'updated_at:datetime',
+            'updated_at:datetime',
             // 'created_by',
             // 'updated_by',
             // 'category_id',

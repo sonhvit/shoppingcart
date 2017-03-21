@@ -37,6 +37,7 @@ class ProductDescription extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['category_id'], 'integer'],
         ];
     }
 
@@ -55,13 +56,18 @@ class ProductDescription extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
+            'name' => 'Tên sản phẩm',
+            'description' => 'Nội dung',
+            'status' => 'Trạng thái',
+            'category_id' => 'Tên Nhóm',
+            'created_at' => 'Ngày tạo',
+            'updated_at' => 'Ngày sửa',
+            'created_by' => 'Người tạo',
+            'updated_by' => 'Người sửa',
         ];
+    }
+    public function getCategoryid()
+    {
+        return $this->hasOne(ProductCategory::className(), ['id' => 'category_id']);
     }
 }

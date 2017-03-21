@@ -22,15 +22,7 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?php echo $form->field($model, 'status')->textInput() ?>
-
-    <?php echo $form->field($model, 'created_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'created_by')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_by')->textInput() ?>
+    <?php echo $form->field($model, 'status')->checkbox() ?>
 
 
     <div class="form-group">
