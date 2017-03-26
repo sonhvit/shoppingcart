@@ -64,12 +64,19 @@ class ProductCategory extends \yii\db\ActiveRecord
             'updated_by' => 'Người sửa',
         ];
     }
+
     public function getCreated()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
+
     public function getUpdated()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    public function getProduct()
+    {
+        return $this->hasMany(ProductDescription::className(), ['category_id' => 'id']);
     }
 }

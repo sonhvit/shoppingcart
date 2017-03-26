@@ -2,6 +2,7 @@
 
 namespace common\models\store;
 
+use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -21,6 +22,10 @@ use yii\behaviors\TimestampBehavior;
 class ProductDescription extends \yii\db\ActiveRecord
 {
     /**
+     * @var array
+     */
+    public $thumbnail;
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -37,7 +42,9 @@ class ProductDescription extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['thumbnail_base_url', 'thumbnail_path'], 'string', 'max' => 1024],
             [['category_id'], 'integer'],
+            ['thumbnail', 'safe']
         ];
     }
 
@@ -46,6 +53,12 @@ class ProductDescription extends \yii\db\ActiveRecord
         return [
             TimestampBehavior::className(),
             BlameableBehavior::className(),
+            [
+                'class' => UploadBehavior::className(),
+                'attribute' => 'thumbnail',
+                'pathAttribute' => 'thumbnail_path',
+                'baseUrlAttribute' => 'thumbnail_base_url'
+            ]
         ];
     }
 
@@ -59,11 +72,13 @@ class ProductDescription extends \yii\db\ActiveRecord
             'name' => 'Tên sản phẩm',
             'description' => 'Nội dung',
             'status' => 'Trạng thái',
+            'thumbnail' => 'Ảnh đại diện',
             'category_id' => 'Tên Nhóm',
             'created_at' => 'Ngày tạo',
             'updated_at' => 'Ngày sửa',
             'created_by' => 'Người tạo',
             'updated_by' => 'Người sửa',
+
         ];
     }
     public function getCategoryid()
